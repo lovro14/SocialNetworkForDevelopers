@@ -1,0 +1,15 @@
+export const MIN_LENGTH_NAME = 3;
+export const MAX_LENGTH_NAME = 40;
+export const MIN_LENGTH_PASSWORD = 6;
+export const MIN_LENGTH_POST = 5;
+export const MAX_LENGTH_POST = 500;
+export const MIN_LENGTH_IDENTITY_NAME = 2;
+export const MAX_LENGTH_IDENTITY_NAME = 30;
+export const MAX_LENGTH_BIO = 500;
+export const DATE_FORMAT = "YYYY-MM-DD";
+export const MAX_LENGTH_EXPERIENCE_DESC = 500;
+export const MAX_LENGTH_EDUCATION_DESC = 500;
+export const MAX_LENGTH_PROJECT_SUMMARY = 500;
+export const MAX_LENGTH_PROJECT_CONTRIBUTION = 500;
+export const MIN_LENGTH_COMMENT = 3;
+export const MAX_LENGTH_COMMENT = 300;
