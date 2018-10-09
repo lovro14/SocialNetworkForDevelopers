@@ -6,8 +6,12 @@ import {
 } from "../../shared/validation-constants";
 import mongoose from "mongoose";
 import PostRepository from "../data/post-repository";
+import BusinessProfileRepository from "../../businessProfile/data/businessprofile-repository";
 
 export const validatePostData = (req, res, next) => {
+  if (isEmpty(req.body.identityName) && req.method==="POST") {
+    return res.status(400).send({ message: "Bad Request" });
+  }
   const data = req.body;
   data.text = isEmpty(data.text) ? "" : data.text;
 
@@ -28,6 +32,7 @@ export const validatePostData = (req, res, next) => {
 
 export const validatePostId = async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.post_id)) {
+    console.log("alooooooooooooooooooo")
     return res.status(400).send({ message: "Bad Request" });
   }
   try {
@@ -46,4 +51,21 @@ export const checkPostOwner = (req, res, next) => {
     return res.status(403).send({ message: "Forbidden" });
   }
   return next();
+};
+
+export const validateIdentityName = async (req, res, next) => {
+  if (isEmpty(req.body.identityName)) {
+    return res.status(400).send({ message: "Bad Request" });
+  }
+  try {
+    const user = await BusinessProfileRepository.findOne({
+      identityName: req.body.identityName
+    });
+    if (isEmpty(user)) {
+      return res.status(404).send({ message: "Not Found" });
+    }
+    return next();
+  } catch (err) {
+    console.log(err);
+  }
 };

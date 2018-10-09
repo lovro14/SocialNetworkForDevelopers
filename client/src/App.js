@@ -5,21 +5,7 @@ import Footer from "./components/layout/Footer";
 import LandingPage from "./components/layout/LandingPage";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./hoc/privateRoute/PrivateRoute";
-// import Register from "./components/auth/Register";
-// import Login from "./components/auth/Login";
-// import Dashboard from "./components/dashboard/Dashboard";
-// import Logout from "./components/auth/Logout";
-// import AddEducation from "./components/businessProfileActions/AddEducation";
-// import AddExperience from "./components/businessProfileActions/AddExperience";
-// import AddProject from "./components/businessProfileActions/AddProject";
-// import CreateProfile from "./components/create-profile/CreateProfile";
-// import EditProfile from "./components/edit-profile/EditProfile";
-// import BusinessProfiles from "./components/businessProfiles/BusinessProfiles";
-// import BusinessProfile from "./components/businessProfile/BusinessProfile";
-// import Posts from "./components/posts/Posts";
-// import Post from "./components/post/Post";
 import AsyncComponent from "./hoc/asyncComponent/AsyncComponent";
-//import NotFound from "./components/notFound/NotFound";
 
 const asyncRegister = AsyncComponent(() => {
   return import("./components/auth/Register");

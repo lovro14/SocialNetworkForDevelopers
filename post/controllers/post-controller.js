@@ -21,7 +21,8 @@ class PostController {
       userId: req.authData._id,
       text: req.body.text,
       name: req.authData.name,
-      profilePicture: req.authData.profilePicture
+      profilePicture: req.authData.profilePicture,
+      identityName: req.body.identityName
     };
     try {
       req.newPost = await this.repository.createPost(newPost);
@@ -71,7 +72,7 @@ class PostController {
 
   async updatePost(req, res, next) {
     try {
-      req.newPost = await this.repository.update(
+      req.newPost = await this.repository.postAction(
         { _id: req.params.post_id },
         { text: req.body.text },
         { new: true }

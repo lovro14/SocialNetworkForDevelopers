@@ -7,13 +7,15 @@ import {
   UNLIKE_POST,
   GET_POST,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  EDIT_POST
 } from "../actions/actionTypes";
 
 const initialState = {
   post: null,
   posts: null,
-  loading: false
+  loading: false,
+  edit: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -76,6 +78,13 @@ const reducer = (state = initialState, action) => {
     case DELETE_COMMENT:
       return {
         ...state,
+        post: action.payload
+      };
+
+    case EDIT_POST:
+      return {
+        ...state,
+        edit: null,
         post: action.payload
       };
     default:

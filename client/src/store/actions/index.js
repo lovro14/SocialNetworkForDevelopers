@@ -29,5 +29,6 @@ export {
   unLikePost,
   getPost,
   addComment,
-  deleteComment
+  deleteComment,
+  editPost
 } from "./postActions";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getPosts } from "../../store/actions";
+import { getPosts, clearErrors } from "../../store/actions";
 import AddPost from "./AddPost";
 import PostItem from "./PostItem";
 import Spinner from "../UI/Spinner";
@@ -10,6 +10,10 @@ class Posts extends Component {
   componentDidMount() {
     this.props.getPosts();
   }
+
+  businessProfileRedirect = () => {
+    this.props.history.push("/create-profile");
+  };
   render() {
     const { posts, loading } = this.props.post;
     let postContent;
@@ -17,16 +21,17 @@ class Posts extends Component {
       postContent = <Spinner />;
     } else {
       if (posts.length > 0) {
+        console.log(posts);
         postContent = (
           <div>
-            <AddPost />
+            <AddPost redirect={this.businessProfileRedirect}/>
             {posts.map(post => (
-              <PostItem key={post._id} post={post} showActions={true} />
+              <PostItem key={post._id} postProp={post} showActions={true} />
             ))}
           </div>
         );
-      }else{
-        postContent = <AddPost />
+      } else {
+        postContent = <AddPost redirect={this.businessProfileRedirect}/>;
       }
     }
     return (
@@ -53,7 +58,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getPosts
+  getPosts,
+  clearErrors
 };
 
 export default connect(

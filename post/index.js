@@ -3,7 +3,8 @@ import { verifyToken } from "../shared/middleware/authentication";
 import {
   validatePostData,
   validatePostId,
-  checkPostOwner
+  checkPostOwner,
+  validateIdentityName
 } from "./middleware/post-validation";
 import {
   validateCommentData,
@@ -22,6 +23,7 @@ export const postRouter = new express.Router();
 postRouter.post(
   "/",
   verifyToken,
+  validateIdentityName,
   validatePostData,
   PostController.addPost,
   postResponse

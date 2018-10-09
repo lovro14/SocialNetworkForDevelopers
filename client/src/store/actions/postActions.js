@@ -9,7 +9,8 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  EDIT_POST
 } from "./actionTypes";
 import { clearErrors } from "./profileActions";
 
@@ -37,6 +38,7 @@ export const getPosts = () => async dispatch => {
   try {
     dispatch(setLoading());
     const res = await axiosInstance.get("/api/posts");
+    console.log(res.data);
     dispatch(getFeedPosts(res.data.reverse()));
   } catch (err) {
     console.log(err);
@@ -156,5 +158,20 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     dispatch(deleteCom(res.data));
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const editPost = (text, postId) => async dispatch => {
+  try {
+    const updateData = {
+      text: text
+    };
+    const res = await axiosInstance.patch(`/api/posts/${postId}`, updateData);
+    dispatch({
+      type: EDIT_POST,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch(setErrors(err));
   }
 };

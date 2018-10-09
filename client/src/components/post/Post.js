@@ -23,7 +23,7 @@ class Post extends Component {
       if (Object.keys(post).length > 0) {
         letPostContent = (
           <div>
-            <PostItem post={post} showActions={false} />
+            <PostItem postProp={post} showActions={false} />
             <CommentForm postId={post._id} />
             <CommentFeed
               comments={post.comments}

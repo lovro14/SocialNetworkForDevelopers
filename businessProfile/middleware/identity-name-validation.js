@@ -13,6 +13,7 @@ export const checkIdentityName = async (req, res, next) => {
       });
       if (!isEmpty(businessProfile)) {
         req.businessProfileToUpdate = businessProfile;
+        req.updatePosts = true;
         return next();
       } else {
         return next();

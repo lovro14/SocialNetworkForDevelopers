@@ -33,7 +33,7 @@ class PostRepository {
   }
 
   update(query, update, options) {
-    return this.Post.findOneAndUpdate(query, update, options);
+    return this.Post.update(query, update, options);
   }
 
   postAction(query, update, options) {

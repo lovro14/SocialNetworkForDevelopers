@@ -1,5 +1,6 @@
 import repository from "../data/businessprofile-repository";
 import { isEmpty } from "../../shared/utils";
+import PostRepository from "../../post/data/post-repository";
 
 class BusinessProfileController {
   constructor(repository) {
@@ -55,6 +56,14 @@ class BusinessProfileController {
           { $set: businessProfileData },
           { new: true }
         );
+        if (req.updatePosts) {
+          const res = await PostRepository.update(
+            { userId: req.authData._id },
+            { identityName: req.body.identityName },
+            { multi: true }
+          );
+          console.log(res)
+        }
       } else {
         req.newBusinessProfile = await this.repository.createProfile(
           businessProfileData
